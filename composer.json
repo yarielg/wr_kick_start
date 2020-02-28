@@ -1,0 +1,17 @@
+{
+    "name": "webreadynow/kick_start",
+    "description": "This is a default plugin installation that contain all the necessary resources to create a plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yariel Gordillo",
+            "email": "yariel.gordillo@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": { "Wrkswp\\Inc\\": "./inc"
+
+        }
+    }
+}
