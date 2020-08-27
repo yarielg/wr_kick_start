@@ -1,6 +1,6 @@
 <?php
 
-namespace Wrkswp\Inc;
+namespace Bgs\Inc;
 
 final class Init{
 

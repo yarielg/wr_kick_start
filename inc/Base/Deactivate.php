@@ -6,7 +6,7 @@
 *
 */
 
-namespace Wrkswp\Inc\Base;
+namespace Bgs\Inc\Base;
 
 class Deactivate{
 

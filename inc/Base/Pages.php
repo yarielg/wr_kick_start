@@ -6,31 +6,56 @@
 *
 */
 
-namespace Wrkswp\Inc\Base;
+namespace Bgs\Inc\Base;
 
 class Pages{
 
     public function register(){
 
-        add_action('admin_menu', function(){
-            add_menu_page('Page Title', 'Menu Title', 'manage_options', 'wrkswp-slug-menu', array($this,'admin_index') , WRKSWP_PLUGIN_URL. 'assets/img/icon.png',110);
-        });
-
-        add_action('admin_menu',function(){
-            $page_product =  add_submenu_page( 'wrkswp-parent-slug-menu', __('Page Title','wr_kick_start'), __('Menu Title','wr_text_domain'),'manage_options', 'wrkswp-slug-menu', array($this,'admin_index'));
-            add_action( 'load-' . $page_product, function(){
-                add_action( 'admin_enqueue_scripts',function (){
-                    //Add css and js only for the current page
-                });
-            });
-        });
-
+        //Set a new page under Media menu in Parent Dashboard Website
+        add_action('admin_menu', array($this,'wrn_add_request_page'));
+        //CPT
+        add_action( 'init', array($this,'cptui_register_my_cpts_bg_resources') );
+        //Taxonomies
+        add_action( 'init', array($this, 'cptui_register_my_taxes_bgs_categories') );
     }
 
-    //Assigning the template to page
-    function admin_index(){
-        require_once WRKSWP_PLUGIN_PATH . 'templates/dashboard.php';
+    function wrn_add_request_page(){
+        $user = wp_get_current_user();
+        if(get_current_blog_id() == 1  && in_array( 'administrator', $user->roles )){
+            add_submenu_page( 'upload.php', 'Requests', 'Requests', 'manage_options', 'wrn_request_media', function(){
+                $myListTable = new Request_Media_Table();
+                echo '<div class="wrap"><h2>Media Requests</h2>';
+                $myListTable->prepare_items();
+                $myListTable->display();
+                echo '</div>';
+            } );
+
+            add_submenu_page( 'upload.php', 'Settings', 'Settings', 'manage_options', 'wrn_settings_media', function(){
+                if(isset($_POST['max_admin_approval_submit'])){
+                    if($_POST['max_admin_approval'] > 0){
+                        wrn_update_option_parent('wrn_max_admin_approval',$_POST['max_admin_approval']);
+                    }else{
+                        echo '<div class="error notice"><p>Error, No negative number are allowed</p></div>';
+                    }
+                }
+                echo '<div class="wrap"><h2>Settings Requests</h2>';
+                echo '<br>';
+                echo '<hr>';
+                echo '<br>';
+                echo '<form action="upload.php?page=wrn_settings_media" method="post">';
+                echo '<label for="max_admin_approval"> Define the max of admins that must approved a media </label>';
+                echo '<input id="max_admin_approval" type="number" name="max_admin_approval" value="'.wrn_get_option_parent('wrn_max_admin_approval').'">';
+                echo '<br><br><br>';
+                echo '<input id="max_admin_approval_submit" min=0 type="submit" name="max_admin_approval_submit" value="Update Settings">';
+                echo '</form>';
+                echo '</div>';
+            } );
+        }
     }
+
+
+    
 
 }
 ?>
