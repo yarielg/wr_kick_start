@@ -6,21 +6,21 @@
 *
 */
 
-namespace Bgs\Inc\Base;
+namespace Kgm\Inc\Base;
 
 class Pages{
 
     public function register(){
 
         //Set a new page under Media menu in Parent Dashboard Website
-        add_action('admin_menu', array($this,'wrn_add_request_page'));
+        //add_action('admin_menu', array($this,'wrn_add_request_page'));
         //CPT
-        add_action( 'init', array($this,'cptui_register_my_cpts_bg_resources') );
+        //add_action( 'init', array($this,'cptui_register_my_cpts_bg_resources') );
         //Taxonomies
-        add_action( 'init', array($this, 'cptui_register_my_taxes_bgs_categories') );
+        //add_action( 'init', array($this, 'cptui_register_my_taxes_bgs_categories') );
     }
 
-    function wrn_add_request_page(){
+    /*function wrn_add_request_page(){
         $user = wp_get_current_user();
         if(get_current_blog_id() == 1  && in_array( 'administrator', $user->roles )){
             add_submenu_page( 'upload.php', 'Requests', 'Requests', 'manage_options', 'wrn_request_media', function(){
@@ -52,7 +52,7 @@ class Pages{
                 echo '</div>';
             } );
         }
-    }
+    }*/
 
 
     

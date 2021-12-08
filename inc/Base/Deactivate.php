@@ -6,7 +6,7 @@
 *
 */
 
-namespace Bgs\Inc\Base;
+namespace Kgm\Inc\Base;
 
 class Deactivate{
 

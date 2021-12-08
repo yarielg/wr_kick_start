@@ -1,0 +1,44 @@
+#map{
+    height: 500px;
+}
+
+#fll_dealer_list{
+    height: 500px;
+    overflow-y: scroll;
+}
+
+#fll_dealer_list .dealer-list-item{
+    width: 100%;
+    background: aliceblue;
+    padding: 18px 18px 30px;
+    border-top: 2px solid black;
+}
+
+#fll_dealer_list p{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#fll_dealer_list .dealer-list-item:hover{
+    background: #999999;
+    color: black;
+}
+
+#fll_dealer_list .dealer-list-item button{
+    float: right;
+}
+
+#fll_dealer_list .dealer-list-item button:hover{
+    cursor: pointer;
+}
+
+#fll_dealer_list .right-info{
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+img.certified_img{
+    display: inline-block !important;
+}
+

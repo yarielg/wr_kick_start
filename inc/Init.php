@@ -1,14 +1,15 @@
 <?php
 
-namespace Bgs\Inc;
+namespace Kgm\Inc;
 
 final class Init{
 
     public static function get_services(){
 
         return [
-            Base\Pages::class,
+            Base\Settings::class,
             Base\Enqueue::class,
+            Base\Ajax::class,
 
         ] ;
     }
