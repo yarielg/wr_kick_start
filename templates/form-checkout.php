@@ -35,12 +35,16 @@ foreach (WC()->cart->get_cart() as $car_item){
     }
 }
 
-?>
+include  KGM_PLUGIN_PATH . '/templates/partials/step_bar.php';
 
+?>
+<br><br>
 <form id="regForm" name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
     <?php if ( $checkout->get_checkout_fields() ) : ?>
 
         <?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
+
+        <input type="hidden" id="dealer_selected" value="">
 
         <div class="col2-set step step-1" id="customer_details">
             <div class="col-1">
@@ -56,26 +60,34 @@ foreach (WC()->cart->get_cart() as $car_item){
 
         <?php if($flag_require_dealer){ ?>
             <div class="col2-set step step-2" id="ffl_locators">
-                <div id="map"></div>
-                <button type="button" onclick="getLocation()">Use Current Location</button>
-                <input type="number" placeholder="Enter zipcode" id="enter_zipcode">
-                <button type="button" onclick="getLocationZipCode()"  id="enter_zipcode_btn">Use Zipcode</button>
+                <div class="dealer_selection_options">
+                    <input checked class="dealer_selection_radio choose" id="choose" type="radio" name="select_type_dealer_selection">
+                    <label class="label_dealer_radio" for="choose">Select a dealer</label>
+                    <input class="dealer_selection_radio enter" id="enter" type="radio" name="select_type_dealer_selection">
+                    <label class="label_dealer_radio" for="enter">Enter Your Dealer</label>
+                </div>
+                <br><br>
+                <div class="enter_your_dealer" style="display: none">
+                    <?php include KGM_PLUGIN_PATH . '/templates/partials/enter_dealer_info.php' ?>
+                </div>
+                <div id="enter_dealer_msg_success" style="display: none">
+                    <button id="change_dealer_btn" type="button">Change Dealer</button>
+                </div>
+                <div class="dealer_selection">
+                    <div id="map"></div>
+                    <button type="button" id="get_location_brn" onclick="window.Kgm.MapHandler.getLocation()">Use Current Location</button>
+                    <input type="number" placeholder="Enter zipcode" id="enter_zipcode">
+                    <button type="button" onclick="window.Kgm.MapHandler.getLocationZipCode()"  id="enter_zipcode_btn">Use Zipcode</button>
 
-                <h3><strong>FFL DEALERS</strong></h3>
-                <div id="fll_dealer_list">
-
+                    <h3><strong>FFL DEALERS</strong></h3>
+                    <div id="fll_dealer_list"></div>
                 </div>
             </div>
 
             <div class="col2-set step step-3" id="nfa_agreements">
-                NFA Agreements
+                <?php include KGM_PLUGIN_PATH . '/templates/partials/terms_check.php' ?>
             </div>
         <?php } ?>
-
-
-        <!--<div class="col-2-set step step-4">
-
-        </div>-->
 
     <?php endif; ?>
 
@@ -95,11 +107,7 @@ foreach (WC()->cart->get_cart() as $car_item){
 
 
 </form>
-<button class="btn-step go_back">Go Back</button>
-<button class="btn-step continue">Continue</button>
-
-
-
-
+<button class="btn-step footer go_back">Go Back</button>
+<button class="btn-step footer continue">Continue</button>
 
 <?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>
