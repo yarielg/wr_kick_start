@@ -74,7 +74,7 @@ include  KGM_PLUGIN_PATH . '/templates/partials/step_bar.php';
                     <button id="change_dealer_btn" type="button">Change Dealer</button>
                 </div>
                 <div class="dealer_selection">
-                    <div id="map"></div>
+                    <div id="map_id_wrapper"></div>
                     <button type="button" id="get_location_brn" onclick="window.Kgm.MapHandler.getLocation()">Use Current Location</button>
                     <input type="number" placeholder="Enter zipcode" id="enter_zipcode">
                     <button type="button" onclick="window.Kgm.MapHandler.getLocationZipCode()"  id="enter_zipcode_btn">Use Zipcode</button>

@@ -1,5 +1,5 @@
-#map{
-    height: 500px;
+#map_id_wrapper{
+    height: 500px !important;
 }
 
 #fll_dealer_list{

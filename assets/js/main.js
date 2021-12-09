@@ -22,7 +22,9 @@
                 window.ffl_lon = -104.6573965;
             }
 
-            self.map = new google.maps.Map(document.getElementById("map"), {
+            console.log(document.getElementById("map_id_wrapper"))
+
+            self.map = new google.maps.Map(document.getElementById("map_id_wrapper"), {
                 center: { lat: window.ffl_lat, lng: window.ffl_lon },
                 zoom: 8,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,

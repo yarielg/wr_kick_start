@@ -30,7 +30,6 @@ define('KGM_PLUGIN_DIR_BASENAME' , dirname(plugin_basename(__FILE__)) );
 
 //include the helpers
 include 'inc/util/helpers.php';
-
 if( class_exists( 'Kgm\\Inc\\Init' ) ){
     register_activation_hook( __FILE__ , array('Kgm\\Inc\\Base\\Activate','activate') );
     Kgm\Inc\Init::register_services();
