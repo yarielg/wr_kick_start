@@ -6,7 +6,7 @@
 *
 */
 
-namespace Kgm\Inc\Base;
+namespace Bgad\Inc\Base;
 
 class Settings{
 
@@ -16,11 +16,11 @@ class Settings{
          * Override woocommerce template from plugin
          */
 
-        add_filter( 'woocommerce_locate_template', array($this, 'kgm_locate_template'), 10, 3 );
+        add_filter( 'woocommerce_locate_template', array($this, 'locate_template'), 10, 3 );
 
     }
 
-    function kgm_locate_template( $template, $template_name, $template_path ) {
+    function locate_template( $template, $template_name, $template_path ) {
         $basename = basename( $template );
 
         switch ($basename){

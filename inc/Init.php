@@ -1,6 +1,6 @@
 <?php
 
-namespace Kgm\Inc;
+namespace Bgad\Inc;
 
 final class Init{
 
